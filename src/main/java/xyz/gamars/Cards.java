@@ -3,34 +3,36 @@ package xyz.gamars;
 public class Cards {
 
     private int value;
-    private String suit;
-    private Cards card;
+    private Suit suit;
+
     public Cards() {
-        card.value = 3;
-        card.suit = "Spades";
+        this.value = 3;
+        this.suit = Suit.SPADES;
     }
-    public Cards(int value, String suit) {
-        this.card.value = value;
-        this.card.suit = suit;
+    public Cards(int value, Suit suit) {
+        this.value = value;
+        this.suit = suit;
     }
-    public Cards getCard(){
-        return this.card;
-    }
+
     public int getValue() {
-        return this.card.value;
+        return value;
     }
-    public String getSuit() {
-        return this.card.suit;
+
+    public void setValue(int value) {
+        this.value = value;
     }
-    public void setValue(int newValue) {
-        this.card.value = newValue;
+
+    public Suit getSuit() {
+        return suit;
     }
-    public void setSuit(String newSuit) {
-        this.card.suit = newSuit;
+
+    public void setSuit(Suit suit) {
+        this.suit = suit;
     }
-    public void setCard(int newVal, String newSuit) {
-        this.card.value = newVal;
-        this.card.suit = newSuit;
+
+    public void setCard(int value, Suit suit) {
+        this.value = value;
+        this.suit = suit;
     }
 
 
