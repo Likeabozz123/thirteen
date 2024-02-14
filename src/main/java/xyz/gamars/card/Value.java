@@ -1,4 +1,4 @@
-package xyz.gamars;
+package xyz.gamars.card;
 
 public enum Value {
 
@@ -19,21 +19,21 @@ public enum Value {
     /**
      * Raw value of the card's value
      */
-    private final int value;
+    private final int rawValue;
 
     /**
      * Value constructor
-     * @param value raw value of the card's value
+     * @param rawValue raw value of the card's value
      */
-    Value(int value) {
-        this.value = value;
+    Value(int rawValue) {
+        this.rawValue = rawValue;
     }
 
     /**
      * Returns the raw value of the card's value
      * @return raw value of the card's value
      */
-    public int getValue() {
-        return value;
+    public int getRawValue() {
+        return rawValue;
     }
 }

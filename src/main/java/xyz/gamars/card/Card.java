@@ -1,4 +1,4 @@
-package xyz.gamars;
+package xyz.gamars.card;
 
 public class Card {
 
@@ -80,8 +80,8 @@ public class Card {
      * @return whether card is greater
      */
     public boolean compare(Card card) {
-        if (this.value.getValue() > card.value.getValue()) return true;
-        if (this.suit.getValue() > card.suit.getValue()) return true;
+        if (this.value.getRawValue() > card.value.getRawValue()) return true;
+        if (this.suit.getRawValue() > card.suit.getRawValue()) return true;
         return false;
     }
 

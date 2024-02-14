@@ -1,4 +1,4 @@
-package xyz.gamars;
+package xyz.gamars.card;
 
 public enum Suit {
 
@@ -10,21 +10,21 @@ public enum Suit {
     /**
      * Raw value of the card's suit
      */
-    private final int value;
+    private final int rawValue;
 
     /**
      * Suit constructor
-     * @param value raw value of the card's suit
+     * @param rawValue raw value of the card's suit
      */
-    Suit(int value) {
-        this.value = value;
+    Suit(int rawValue) {
+        this.rawValue = rawValue;
     }
 
     /**
      * Returns the raw value of the card's suit
      * @return raw value of the card suit
      */
-    public int getValue() {
-        return value;
+    public int getRawValue() {
+        return rawValue;
     }
 }
