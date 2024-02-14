@@ -16,12 +16,23 @@ public enum Value {
     ACE(14),
     TWO(15);
 
+    /**
+     * Raw value of the card's value
+     */
     private final int value;
 
-    private Value(int value) {
+    /**
+     * Value constructor
+     * @param value raw value of the card's value
+     */
+    Value(int value) {
         this.value = value;
     }
 
+    /**
+     * Returns the raw value of the card's value
+     * @return raw value of the card's value
+     */
     public int getValue() {
         return value;
     }
