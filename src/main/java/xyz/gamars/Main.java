@@ -24,14 +24,11 @@ public class Main {
 
         System.out.println("Can place cards: " + thirteenGame.placeCards(hand));
 
-        hand = new ArrayList<>();
-        hand.add(new Card(Value.THREE, Suit.DIAMONDS));
-        hand.add(new Card(Value.THREE, Suit.SPADES));
-        hand.add(new Card(Value.KING, Suit.SPADES));
-        hand.add(new Card(Value.KING, Suit.HEARTS));
-        Collections.shuffle(hand);
-        System.out.println(hand);
-        System.out.println(thirteenGame.sortCards(hand));
+        ArrayList<Card> deck = thirteenGame.createDeck();
+        System.out.println(deck);
+        Collections.shuffle(deck);
+        System.out.println(deck);
+        System.out.println(thirteenGame.sortCards(deck));
     }
 
 

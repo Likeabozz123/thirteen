@@ -1,7 +1,10 @@
 package xyz.gamars;
 
 import xyz.gamars.card.Card;
+import xyz.gamars.card.Suit;
+import xyz.gamars.card.Value;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -13,7 +16,7 @@ public class ThirteenGame {
 
     public ThirteenGame() {
         this.placedCards = new ArrayList<>();
-        this.placedCards.add(new Card());
+        this.placedCards.add(new Card()); // temp
     }
 
     /**
@@ -90,6 +93,21 @@ public class ThirteenGame {
 
         return true;
     }
+
+    /**
+     * Creates a deck of cards
+     * @return list of cards
+     */
+    public ArrayList<Card> createDeck() {
+        ArrayList<Card> deck = new ArrayList<>();
+        for (Value value : Value.values()) {
+            for (Suit suit : Suit.values()) {
+                deck.add(new Card(value, suit));
+            }
+        }
+        return deck;
+    }
+
 
 
 
