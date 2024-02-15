@@ -10,25 +10,44 @@ import java.util.Collections;
 public class Main {
 
     public static void main(String[] args) {
-        Card card = new Card();
-        System.out.println(card);
+        ThirteenGame thirteenGame =  new ThirteenGame();
+        ArrayList<Card> freshDeck = thirteenGame.createDeck();
 
-        Card ten = new Card(Value.TEN, Suit.HEARTS);
-        System.out.println(ten);
-        System.out.println(ten.compare(new Card(Value.FOUR, Suit.SPADES)));
+        System.out.println("Fresh deck: " + freshDeck);
+        ArrayList<Card> shuffledDeck = thirteenGame.createDeck();
+        Collections.shuffle(shuffledDeck);
+        System.out.println("Shuffled deck: " + shuffledDeck);
+        ArrayList<Card> sortedCards = thirteenGame.sortCards(shuffledDeck);
+        System.out.println("Sorted deck: " + sortedCards);
 
-        ThirteenGame thirteenGame = new ThirteenGame();
-        ArrayList<Card> hand = new ArrayList<>();
-        hand.add(ten);
-        hand.add(ten);
+        Card fourSpades = new Card(Value.FOUR, Suit.SPADES);
+        Card threeClubs = new Card(Value.THREE, Suit.CLUBS);
+        System.out.println("Is " + threeClubs + " greater than " + fourSpades + " : " + threeClubs.compare(fourSpades));
 
-        System.out.println("Can place cards: " + thirteenGame.placeCards(hand));
+        ArrayList<Card> sequence = new ArrayList<>();
+        sequence.add(new Card(Value.THREE, Suit.SPADES));
+        sequence.add(new Card(Value.FOUR, Suit.HEARTS));
+        sequence.add(new Card(Value.FIVE, Suit.DIAMONDS));
+        System.out.println("Is " + sequence + " a valid sequence : " + thirteenGame.isValidSequence(sequence));
 
-        ArrayList<Card> deck = thirteenGame.createDeck();
-        System.out.println(deck);
-        Collections.shuffle(deck);
-        System.out.println(deck);
-        System.out.println(thirteenGame.sortCards(deck));
+        ArrayList<Card> pair = new ArrayList<>();
+        pair.add(new Card(Value.THREE, Suit.SPADES));
+        pair.add(new Card(Value.THREE, Suit.HEARTS));
+        System.out.println("Is " + pair + " a valid pair : " + thirteenGame.isValidPair(pair));
+
+        ArrayList<Card> triplet = new ArrayList<>();
+        triplet.add(new Card(Value.THREE, Suit.SPADES));
+        triplet.add(new Card(Value.THREE, Suit.HEARTS));
+        triplet.add(new Card(Value.THREE, Suit.DIAMONDS));
+        System.out.println("Is " + triplet + " a valid triplet : " + thirteenGame.isValidTriplet(triplet));
+
+        ArrayList<Card> quartet = new ArrayList<>();
+        quartet.add(new Card(Value.ACE, Suit.SPADES));
+        quartet.add(new Card(Value.ACE, Suit.HEARTS));
+        quartet.add(new Card(Value.ACE, Suit.DIAMONDS));
+        quartet.add(new Card(Value.ACE, Suit.CLUBS));
+        System.out.println("Is " + quartet + " a valid quartet : " + thirteenGame.isValidQuartet(quartet));
+
     }
 
 

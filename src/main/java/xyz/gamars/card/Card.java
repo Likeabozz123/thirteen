@@ -81,7 +81,11 @@ public class Card {
      */
     public boolean compare(Card card) {
         if (this.value.getRawValue() > card.value.getRawValue()) return true;
-        if (this.suit.getRawValue() > card.suit.getRawValue()) return true;
+        if (this.value == card.value) {
+            if (this.suit.getRawValue() > card.suit.getRawValue()) return true;
+            else return false;
+        }
+
         return false;
     }
 

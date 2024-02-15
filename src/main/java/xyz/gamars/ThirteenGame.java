@@ -26,6 +26,7 @@ public class ThirteenGame {
      * @return sorted list of cards
      */
     public ArrayList<Card> sortCards(ArrayList<Card> cards) {
+
         for (int outer = 0; outer < cards.size() - 1; outer++) {
             for (int inner = 0; inner < cards.size() - outer - 1; inner++) {
 
