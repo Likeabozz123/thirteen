@@ -48,6 +48,15 @@ public class Main {
         quartet.add(new Card(Value.ACE, Suit.CLUBS));
         System.out.println("Is " + quartet + " a valid quartet : " + thirteenGame.isValidQuartet(quartet));
 
+        ArrayList<Card> bomb = new ArrayList<>();
+        bomb.add(new Card(Value.THREE, Suit.SPADES));
+        bomb.add(new Card(Value.THREE, Suit.CLUBS));
+        bomb.add(new Card(Value.FOUR, Suit.SPADES));
+        bomb.add(new Card(Value.FOUR, Suit.CLUBS));
+        bomb.add(new Card(Value.FIVE, Suit.SPADES));
+        bomb.add(new Card(Value.FIVE, Suit.CLUBS));
+        System.out.println("Is " + bomb + " a valid bomb : " + thirteenGame.isValidBomb(bomb));
+
         System.out.println(thirteenGame.canPlaceSingle(new Card(Value.THREE, Suit.CLUBS)));
         System.out.println(thirteenGame.canPlaceSingle(new Card(Value.TEN, Suit.CLUBS)));
         System.out.println(thirteenGame.canPlaceSingle(new Card()));

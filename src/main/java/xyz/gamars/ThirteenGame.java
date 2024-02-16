@@ -50,8 +50,8 @@ public class ThirteenGame {
      * @return whether the given cards are a given a valid sequence
      */
     public boolean isValidSequence(ArrayList<Card> cards) {
-        sortCards(cards);
         if (cards.size() < 3) return false;
+        sortCards(cards);
 
         for (int i = 0; i < cards.size() - 1; i++) {
             if (cards.get(i).getValue().getRawValue() != cards.get(i + 1).getValue().getRawValue() - 1) return false;
@@ -68,6 +68,18 @@ public class ThirteenGame {
     public boolean isValidPair(ArrayList<Card> cards) {
         if (cards.size() != 2) return false;
         if (cards.get(0).getValue() != cards.get(1).getValue()) return false;
+
+        return true;
+    }
+
+    /**
+     * Returns whether the given cards are a valid pair
+     * @param card1 card is being checked
+     * @param card2 card is being checked
+     * @return whether the given cards are a valid pair
+     */
+    public boolean isValidPair(Card card1, Card card2) {
+        if (card1.getValue() != card2.getValue()) return false;
 
         return true;
     }
@@ -95,6 +107,29 @@ public class ThirteenGame {
         if ((cards.get(0).getValue() != cards.get(1).getValue())
                 && (cards.get(0).getValue() != cards.get(2).getValue())
                 && (cards.get(0).getValue() != cards.get(3).getValue())) return false;
+
+        return true;
+    }
+
+    /**
+     * Returns whether the given cards are a valid bomb
+     * @param cards the given cards
+     * @return whether the given cards are a valid bomb
+     */
+    public boolean isValidBomb(ArrayList<Card> cards) {
+        if (cards.size() != 6) return false;
+        sortCards(cards);
+
+        if (!(isValidPair(cards.get(0), cards.get(1))
+                && isValidPair(cards.get(2), cards.get(3))
+                && isValidPair(cards.get(4), cards.get(5)))) return false;
+
+        ArrayList<Card> bombSequence = new ArrayList<>();
+        bombSequence.add(cards.get(0));
+        bombSequence.add(cards.get(2));
+        bombSequence.add(cards.get(4));
+
+        if (!isValidSequence(bombSequence)) return false;
 
         return true;
     }
@@ -211,6 +246,21 @@ public class ThirteenGame {
 
         return compareMultipleCards(cards);
     }
+
+
+    public boolean canPlaceBomb(ArrayList<Card> cards) {
+        if (placedCards.size() != 6) return false;
+        if (cards.size() != 6) return false;
+
+        sortCards(placedCards);
+        sortCards(cards);
+
+        if (!isValidBomb(placedCards)) return false;
+        if (!isValidBomb(cards)) return true;
+
+        return compareMultipleCards(cards);
+    }
+
 
     /**
      * Returns whether the cards are greater than the placed cards
