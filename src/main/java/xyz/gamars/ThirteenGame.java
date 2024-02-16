@@ -247,7 +247,11 @@ public class ThirteenGame {
         return compareMultipleCards(cards);
     }
 
-
+    /**
+     * Returns whether you can place the given bomb
+     * @param cards the given bomb
+     * @return whether you can place the given bomb
+     */
     public boolean canPlaceBomb(ArrayList<Card> cards) {
         if (placedCards.size() != 6) return false;
         if (cards.size() != 6) return false;
