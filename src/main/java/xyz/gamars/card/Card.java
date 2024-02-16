@@ -75,18 +75,52 @@ public class Card {
     }
 
     /**
-     * Returns whether the card is greater than the given card
+     * Returns whether this card is overall greater than the given card
      * @param card the given card
      * @return whether card is greater
      */
     public boolean compare(Card card) {
-        if (this.value.getRawValue() > card.value.getRawValue()) return true;
+        if (compareValue(card)) return true;
         if (this.value == card.value) {
-            if (this.suit.getRawValue() > card.suit.getRawValue()) return true;
+            if (compareSuit(card)) return true;
             else return false;
         }
 
         return false;
+    }
+
+    /**
+     * Returns whether this card has a higher suit than the given card
+     * @param card the given card
+     * @return whether the suit is greater
+     */
+    public boolean compareSuit(Card card) {
+        if (this.suit.getRawValue() > card.getSuit().getRawValue()) return true;
+
+        return false;
+    }
+
+    /**
+     * Returns whether this value has a higher value than the given card
+     * @param card the given card
+     * @return whether the value is greater
+     */
+    public boolean compareValue(Card card) {
+        if (this.value.getRawValue() > card.getValue().getRawValue()) return true;
+        return false;
+    }
+
+    /**
+     * Whether this card and the given card have the same value and same suit
+     * @param card the given card
+     * @return whether they are the same
+     */
+    public boolean equals(Card card) {
+
+        if (this.getValue() != card.getValue()) return false;
+        if (this.getSuit() != card.getSuit()) return false;
+
+        return true;
     }
 
     /**

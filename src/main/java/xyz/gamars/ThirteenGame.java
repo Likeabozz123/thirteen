@@ -17,6 +17,7 @@ public class ThirteenGame {
     public ThirteenGame() {
         this.placedCards = new ArrayList<>();
         this.placedCards.add(new Card()); // temp
+        this.placedCards.add(new Card(Value.THREE, Suit.CLUBS)); // temp
     }
 
     /**
@@ -109,7 +110,54 @@ public class ThirteenGame {
         return deck;
     }
 
+    /**
+     * Returns whether you can place the given single
+     * @param cards the given single
+     * @return whether you can place the given single
+     */
+    public boolean canPlaceSingle(ArrayList<Card> cards) {
+        if (cards.size() != 1) return false;
 
+        return canPlaceSingle(cards.get(0));
+    }
+
+    /**
+     * Returns whether you can place the given single
+     * @param card the given single
+     * @return whether you can place the given single
+     */
+    public boolean canPlaceSingle(Card card) {
+        if (placedCards.size() != 1) return false;
+
+        if (placedCards.get(0).equals(card)) return false;
+        if (placedCards.get(0).compare(card)) return false;
+
+        return true;
+    }
+
+    /**
+     * Returns whether you can place the given pair
+     * @param cards the given pair
+     * @return whether you can place the given pair
+     */
+    public boolean canPlacePair(ArrayList<Card> cards) {
+        if (placedCards.size() != 2) return false;
+        if (cards.size() != 2) return false;
+
+        sortCards(placedCards);
+        sortCards(cards);
+
+        if (!isValidPair(cards)) return false;
+
+        if (placedCards.get(0).getValue() == cards.get(0).getValue()) {
+            if (placedCards.get(1).compareSuit(cards.get(1))) return false;
+            else return true;
+        } else {
+            if (placedCards.get(0).compareValue(cards.get(0))) return false;
+            else return true;
+        }
+
+    }
 
 
 }

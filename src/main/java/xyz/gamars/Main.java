@@ -48,6 +48,11 @@ public class Main {
         quartet.add(new Card(Value.ACE, Suit.CLUBS));
         System.out.println("Is " + quartet + " a valid quartet : " + thirteenGame.isValidQuartet(quartet));
 
+        System.out.println(thirteenGame.canPlaceSingle(new Card(Value.THREE, Suit.CLUBS)));
+        System.out.println(thirteenGame.canPlaceSingle(new Card(Value.TEN, Suit.CLUBS)));
+        System.out.println(thirteenGame.canPlaceSingle(new Card()));
+
+        System.out.println(thirteenGame.canPlacePair(pair));
     }
 
 
