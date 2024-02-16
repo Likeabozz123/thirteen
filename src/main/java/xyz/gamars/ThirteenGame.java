@@ -17,7 +17,8 @@ public class ThirteenGame {
     public ThirteenGame() {
         this.placedCards = new ArrayList<>();
         this.placedCards.add(new Card()); // temp
-        this.placedCards.add(new Card(Value.THREE, Suit.CLUBS)); // temp
+        this.placedCards.add(new Card(Value.FOUR, Suit.CLUBS)); // temp
+        this.placedCards.add(new Card(Value.FIVE, Suit.DIAMONDS)); // temp
     }
 
     /**
@@ -44,10 +45,12 @@ public class ThirteenGame {
 
     /**
      * Returns whether the given cards are a valid sequence
+     * Will sort the cards first before checking if they are a valid sequence
      * @param cards cards that are being checked
      * @return whether the given cards are a given a valid sequence
      */
     public boolean isValidSequence(ArrayList<Card> cards) {
+        sortCards(cards);
         if (cards.size() < 3) return false;
 
         for (int i = 0; i < cards.size() - 1; i++) {
@@ -147,17 +150,89 @@ public class ThirteenGame {
         sortCards(placedCards);
         sortCards(cards);
 
+        if (!isValidPair(placedCards)) return false;
         if (!isValidPair(cards)) return false;
 
+        return compareMultipleCards(cards);
+
+    }
+
+    /**
+     * Returns whether you can place the given triplet
+     * @param cards the given triplet
+     * @return whether you can place the given triplet
+     */
+    public boolean canPlaceTriplet(ArrayList<Card> cards) {
+        if (placedCards.size() != 3) return false;
+        if (cards.size() != 3) return false;
+
+        sortCards(placedCards);
+        sortCards(cards);
+
+        if (!isValidTriplet(placedCards)) return false;
+        if (!isValidTriplet(cards)) return false;
+
+        return compareMultipleCards(cards);
+    }
+
+    /**
+     * Returns whether you can place the given quartet
+     * @param cards the given quartet
+     * @return whether you can place the given quartet
+     */
+    public boolean canPlaceQuartet(ArrayList<Card> cards) {
+        if (placedCards.size() != 4) return false;
+        if (cards.size() != 4) return false;
+
+        sortCards(placedCards);
+        sortCards(cards);
+
+        if (!isValidQuartet(placedCards)) return false;
+        if (!isValidQuartet(cards)) return false;
+
+        return compareMultipleCards(cards);
+    }
+
+    /**
+     * Returns whether you can place the given sequence
+     * @param cards the given sequence
+     * @return whether you can place the given sequence
+     */
+    public boolean canPlaceSequence(ArrayList<Card> cards) {
+        if (placedCards.size() < 3) return false;
+        if (cards.size() < 3) return false;
+        if (placedCards.size() != cards.size()) return false;
+
+        sortCards(placedCards);
+        sortCards(cards);
+
+        if (!isValidSequence(placedCards)) return false;
+        if (!isValidSequence(cards)) return false;
+
+        return compareMultipleCards(cards);
+    }
+
+    /**
+     * Returns whether the cards are greater than the placed cards
+     * First checks if the cards are the same,
+     *  if they are the same then we check the final cards and if they are a greater suit,
+     *      then the cards given are greater.
+     * If they are not the same then we compare the value of the given cards vs the placed cards,
+     *  if the given cards have a greater value
+     *      then the given cards are greater.
+     * @param cards the given cards
+     * @return whether the given cards are greater than the placed cards
+     */
+    public boolean compareMultipleCards(ArrayList<Card> cards) {
         if (placedCards.get(0).getValue() == cards.get(0).getValue()) {
-            if (placedCards.get(1).compareSuit(cards.get(1))) return false;
+            if (placedCards.get(placedCards.size() - 1).compareSuit(cards.get(cards.size() - 1))) return false;
             else return true;
         } else {
             if (placedCards.get(0).compareValue(cards.get(0))) return false;
             else return true;
         }
-
     }
+
 
 
 }
