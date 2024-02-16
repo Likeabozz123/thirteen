@@ -27,7 +27,7 @@ public class Main {
         ArrayList<Card> sequence = new ArrayList<>();
         sequence.add(new Card(Value.THREE, Suit.SPADES));
         sequence.add(new Card(Value.FOUR, Suit.HEARTS));
-        sequence.add(new Card(Value.FIVE, Suit.DIAMONDS));
+        sequence.add(new Card(Value.FIVE, Suit.HEARTS));
         System.out.println("Is " + sequence + " a valid sequence : " + thirteenGame.isValidSequence(sequence));
 
         ArrayList<Card> pair = new ArrayList<>();
@@ -53,6 +53,9 @@ public class Main {
         System.out.println(thirteenGame.canPlaceSingle(new Card()));
 
         System.out.println(thirteenGame.canPlacePair(pair));
+        System.out.println(thirteenGame.canPlaceTriplet(triplet));
+        System.out.println(thirteenGame.canPlaceQuartet(quartet));
+        System.out.println(thirteenGame.canPlaceSequence(sequence));
     }
 
 
