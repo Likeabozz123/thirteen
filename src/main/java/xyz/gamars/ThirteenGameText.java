@@ -5,6 +5,8 @@ package xyz.gamars;
  */
 public class ThirteenGameText {
 
+    public void run() {
 
+    }
 
 }

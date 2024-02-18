@@ -12,13 +12,9 @@ import java.util.ArrayList;
  */
 public class ThirteenGame {
 
-    public ArrayList<Card> placedCards;
-
+    private ArrayList<Card> placedCards;
     public ThirteenGame() {
         this.placedCards = new ArrayList<>();
-        this.placedCards.add(new Card()); // temp
-        this.placedCards.add(new Card(Value.FOUR, Suit.CLUBS)); // temp
-        this.placedCards.add(new Card(Value.FIVE, Suit.DIAMONDS)); // temp
     }
 
     /**
@@ -253,6 +249,12 @@ public class ThirteenGame {
      * @return whether you can place the given bomb
      */
     public boolean canPlaceBomb(ArrayList<Card> cards) {
+        if (placedCards.size() == 1) {
+            if (placedCards.get(0).getValue() == Value.TWO) {
+                return isValidBomb(cards);
+            }
+        }
+
         if (placedCards.size() != 6) return false;
         if (cards.size() != 6) return false;
 
@@ -269,13 +271,13 @@ public class ThirteenGame {
     /**
      * Returns whether the cards are greater than the placed cards
      * First checks if the cards are the same,
-     *  if they are the same then we check the final cards and if they are a greater suit,
-     *      then the cards given are greater.
-     * If they are not the same then we compare the value of the given cards vs the placed cards,
-     *  if the given cards have a greater value
-     *      then the given cards are greater.
-     * @param cards the given cards
-     * @return whether the given cards are greater than the placed cards
+     *      *  if they are the same then we check the final cards and if they are a greater suit,
+     *      *      then the cards given are greater.
+     *      * If they are not the same then we compare the value of the given cards vs the placed cards,
+     *      *  if the given cards have a greater value
+     *      *      then the given cards are greater.
+     *      * @param cards the given cards
+     *      * @return whether the given cards are greater than the placed cards
      */
     public boolean compareMultipleCards(ArrayList<Card> cards) {
         if (placedCards.get(0).getValue() == cards.get(0).getValue()) {
@@ -286,6 +288,49 @@ public class ThirteenGame {
             else return true;
         }
     }
+
+    /**
+     * Clears the current placed cards
+     */
+    public void clearPlacedCards() {
+        placedCards.clear();
+    }
+
+    public void setPlacedCards(ArrayList<Card> cards) {
+        this.placedCards = cards;
+    }
+
+    public ArrayList<Card> getPlacedCards() {
+        return this.placedCards;
+    }
+
+    public boolean canPlaceCards(ArrayList<Card> cards) {
+
+        if (placedCards.isEmpty()) return true;
+        if (placedCards.size() != cards.size() && !(placedCards.get(0).getValue() == Value.TWO)) return false;
+
+        if (placedCards.size() == 1) {
+            if (placedCards.get(0).getValue() == Value.TWO) return canPlaceBomb(cards);
+            return canPlaceSingle(cards);
+        }
+        if (canPlacePair(cards)) return true;
+        if (canPlaceTriplet(cards)) return true;
+        if (canPlaceQuartet(cards)) return true;
+        if (canPlaceSequence(cards)) return true;
+        if (canPlaceBomb(cards)) return true;
+
+        return false;
+    }
+
+    public boolean placeCards(ArrayList<Card> cards) {
+        if (canPlaceCards(cards)) {
+            placedCards = cards;
+            return true;
+        }
+        return false;
+    }
+
+
 
 
 
