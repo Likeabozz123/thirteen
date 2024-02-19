@@ -296,14 +296,27 @@ public class ThirteenGame {
         placedCards.clear();
     }
 
+    /**
+     * Sets the current placed cards to the given cards
+     * @param cards the given cards
+     */
     public void setPlacedCards(ArrayList<Card> cards) {
         this.placedCards = cards;
     }
 
+    /**
+     * Gets the current placed cards
+     * @return the current placed cards
+     */
     public ArrayList<Card> getPlacedCards() {
         return this.placedCards;
     }
 
+    /**
+     * Returns whether the given cards can be placed
+     * @param cards the given cards
+     * @return whether the given cards can be placed
+     */
     public boolean canPlaceCards(ArrayList<Card> cards) {
 
         if (placedCards.isEmpty()) return true;
@@ -322,6 +335,11 @@ public class ThirteenGame {
         return false;
     }
 
+    /**
+     * Places the given cards and replaces the original placed cards with the new ones
+     * @param cards the given cards
+     * @return whether the cards were placed
+     */
     public boolean placeCards(ArrayList<Card> cards) {
         if (canPlaceCards(cards)) {
             placedCards = cards;
@@ -329,8 +347,6 @@ public class ThirteenGame {
         }
         return false;
     }
-
-
 
 
 
